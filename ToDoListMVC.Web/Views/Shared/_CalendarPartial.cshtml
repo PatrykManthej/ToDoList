@@ -1,0 +1,7 @@
+﻿@model ToDoListMVC.Application.ViewModels.Partial.CalendarPartialVm
+<form asp-action="ViewTasks" asp-controller="ToDoTask">
+    <input asp-for="ToDoListId" name="toDoListId" type="hidden" />
+    <label>Select a day to view tasks:</label>
+    <input asp-for="Date" type="date" name="date"/>
+    <button type="submit" class="btn btn-warning">Ok</button>
+</form>

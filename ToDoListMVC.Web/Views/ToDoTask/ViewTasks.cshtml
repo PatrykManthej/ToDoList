@@ -1,0 +1,60 @@
+﻿@using ToDoListMVC.Application.ViewModels.Partial
+@using Microsoft.AspNetCore.Razor.Language.Extensions
+@model ToDoListMVC.Application.ViewModels.ToDoTask.ListToDoTaskVm
+
+@{
+    ViewData["Title"] = "ViewTasks";
+}
+<h4>@ViewData["ListName"]</h4>
+<hr />
+@await Html.PartialAsync("_CalendarPartial", model: new CalendarPartialVm{ToDoListId = Model.ToDoListId, Date = Model.Date})
+
+<a class="btn btn-success" asp-action="AddEdit" asp-controller="ToDoTask" asp-route-toDoListId="@Model.ToDoListId">Create new task</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                DueDate
+            </th>
+            <th>
+                IsCompleted
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ToDoTasksVm)
+        {
+            <tr>
+                <td>
+                    <form asp-action="ChangeName" asp-controller="ToDoTask">
+                        <input asp-for="@item.Name" name="name" class="form-control" onchange="this.form.submit()"/>
+                        <input asp-for="@item.Id" type="hidden" name="taskId" />
+                        <input asp-for="ToDoListId" type="hidden" name="toDoListId" />
+                    </form>
+                </td>
+                <td>
+                    <form asp-action="ChangeDate" asp-controller="ToDoTask">
+                        <input asp-for="@item.DueDate" type="date" name="date" class="form-control" onchange="this.form.submit()" />
+                        <input asp-for="@item.Id" type="hidden" name="taskId" />
+                        <input asp-for="ToDoListId" type="hidden" name="toDoListId" />
+                    </form>
+                </td>
+                <td>
+                    <form asp-action="ChangeIsCompleted" asp-controller="ToDoTask">
+                        <input asp-for="@item.IsCompleted" name="isCompleted" onchange="this.form.submit()">
+                        <input asp-for="@item.Id" type="hidden" name="taskId"/>
+                        <input asp-for="ToDoListId" type="hidden" name="toDoListId" />
+                    </form>
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="AddEdit" asp-controller="ToDoTask" asp-route-Id="@item.Id">Details</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-controller="ToDoTask" asp-route-Id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
