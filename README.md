@@ -6,6 +6,6 @@
 * Entity Framework Core 6
 * Clean Architecture
 * Repository-Service Pattern
-* Fluent Validation 11.2.2
-* AutoMapper 11.0.1
+* Fluent Validation
+* AutoMapper
 * MS SQL
