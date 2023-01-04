@@ -87,7 +87,7 @@ namespace ToDoListMVC.Web.Controllers
 
         public IActionResult ChangeIsCompleted(int taskId, bool isCompleted, int? toDoListId)
         {
-            _toDoTaskService.UpdateToDoTaskProperty(taskId, isCompleted);
+            _toDoTaskService.UpdateToDoTaskProperty(taskId, isCompleted: isCompleted);
             return RedirectToAction("ViewTasks", new { toDoListId });
         }
         public IActionResult ChangeDate(int taskId, DateTime? date, int? toDoListId)
@@ -107,6 +107,11 @@ namespace ToDoListMVC.Web.Controllers
 
             _toDoTaskService.UpdateToDoTaskProperty(taskId, name: name);
 
+            return RedirectToAction("ViewTasks", new { toDoListId });
+        }
+        public IActionResult ChangeNotify(int taskId, bool notify, int? toDoListId)
+        {
+            _toDoTaskService.UpdateToDoTaskProperty(taskId, notify: notify);
             return RedirectToAction("ViewTasks", new { toDoListId });
         }
     }

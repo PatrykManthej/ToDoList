@@ -11,6 +11,7 @@ namespace ToDoListMVC.Application.ViewModels.ToDoTask
         public DateTime? DueDate { get; set; }
         public bool IsCompleted { get; set; }
         public int? ToDoListId { get; set; }
+        public bool Notify { get; set; }
         public List<ToDoListVm> ToDoLists { get; set; }
     }
 

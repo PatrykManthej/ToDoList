@@ -22,6 +22,9 @@
             <th>
                 IsCompleted
             </th>
+            <th>
+                Notify
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -46,6 +49,13 @@
                 <td>
                     <form asp-action="ChangeIsCompleted" asp-controller="ToDoTask">
                         <input asp-for="@item.IsCompleted" name="isCompleted" onchange="this.form.submit()">
+                        <input asp-for="@item.Id" type="hidden" name="taskId"/>
+                        <input asp-for="ToDoListId" type="hidden" name="toDoListId" />
+                    </form>
+                </td>
+                <td>
+                    <form asp-action="ChangeNotify" asp-controller="ToDoTask">
+                        <input asp-for="@item.Notify" name="notify" onchange="this.form.submit()">
                         <input asp-for="@item.Id" type="hidden" name="taskId"/>
                         <input asp-for="ToDoListId" type="hidden" name="toDoListId" />
                     </form>

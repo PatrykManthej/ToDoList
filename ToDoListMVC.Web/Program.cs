@@ -4,6 +4,7 @@ using ToDoListMVC.Application;
 using ToDoListMVC.Application.ViewModels.ToDoList;
 using ToDoListMVC.Application.ViewModels.ToDoTask;
 using ToDoListMVC.Infrastructure;
+using ToDoListMVC.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IValidator<ToDoListVm>, ToDoListVmValidator>();
 builder.Services.AddTransient<IValidator<ToDoTaskVm>, ToDoTaskVmValidator>();
+
+builder.Services.AddHostedService<MailingWorker>();
 
 var app = builder.Build();
 

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using System.Xml.Linq;
 using ToDoListMVC.Application.Interfaces;
 using ToDoListMVC.Application.ViewModels.ToDoTask;
 using ToDoListMVC.Domain.Interfaces;
@@ -80,7 +79,7 @@ namespace ToDoListMVC.Application.Services
             return toDoTask.Id;
         }
 
-        public void UpdateToDoTaskProperty(int taskId, bool? isCompleted = null, string? name = null)
+        public void UpdateToDoTaskProperty(int taskId, bool? isCompleted = null, string? name = null, bool? notify = null)
         {
             var toDoTask = _toDoTaskRepository.GetToDoTaskById(taskId);
 
@@ -92,6 +91,10 @@ namespace ToDoListMVC.Application.Services
             {
                 toDoTask.Name = name;
             }
+            if (notify.HasValue)
+            {
+                toDoTask.Notify = notify.Value;
+            }
             _toDoTaskRepository.UpdateToDoTask(toDoTask);
         }
 
@@ -102,6 +105,15 @@ namespace ToDoListMVC.Application.Services
             toDoTask.DueDate = date;
 
             _toDoTaskRepository.UpdateToDoTask(toDoTask);
+        }
+
+        public List<ToDoTaskVm> GetToDoTasksForSendMail(DateTime date)
+        {
+            var toDoTasks = _toDoTaskRepository.GetToDoTasksByDate(date)
+                .Where(x=>x.Notify == true);
+
+            var toDoTasksVm = toDoTasks.ProjectTo<ToDoTaskVm>(_mapper.ConfigurationProvider).ToList();
+            return toDoTasksVm;
         }
     }
 }

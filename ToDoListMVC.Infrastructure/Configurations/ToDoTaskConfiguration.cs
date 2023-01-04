@@ -17,10 +17,10 @@ namespace ToDoListMVC.Infrastructure.Configurations
 
             builder.HasData
             (
-                new ToDoTask { Id = 1, Name = "FirstTaskWithoutDate", Description = "FirstTaskDescription", DueDate = null, IsCompleted = false, ToDoListId = 1 },
-                new ToDoTask { Id = 2, Name = "SecondTaskWithDate", Description = "SecondTaskDescription", DueDate = DateTime.Now.AddDays(2), IsCompleted = false, ToDoListId = 1 },
-                new ToDoTask { Id = 3, Name = "ThirdTask", Description = "TaskDescription", DueDate = null, IsCompleted = true, ToDoListId = 1 },
-                new ToDoTask { Id = 4, Name = "FourthTask", Description = "TaskDescription", DueDate = DateTime.Now.AddDays(3), IsCompleted = false, ToDoListId = 2 }
+                new ToDoTask { Id = 1, Name = "FirstTaskWithoutDate", Description = "FirstTaskDescription", DueDate = null, IsCompleted = false, ToDoListId = 1, Notify = true },
+                new ToDoTask { Id = 2, Name = "SecondTaskWithDate", Description = "SecondTaskDescription", DueDate = DateTime.Now.AddDays(2), IsCompleted = false, ToDoListId = 1, Notify = true },
+                new ToDoTask { Id = 3, Name = "ThirdTask", Description = "TaskDescription", DueDate = null, IsCompleted = true, ToDoListId = 1, Notify = false },
+                new ToDoTask { Id = 4, Name = "FourthTask", Description = "TaskDescription", DueDate = DateTime.Now.AddDays(1), IsCompleted = false, ToDoListId = 2, Notify = true}
             );
 
             #endregion

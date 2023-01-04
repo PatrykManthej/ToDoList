@@ -9,5 +9,6 @@
         public bool IsCompleted { get; set; }
         public ToDoList ToDoList { get; set; }
         public int? ToDoListId { get; set; }
+        public bool Notify { get; set; }
     }
 }

@@ -31,6 +31,11 @@
                     <input class="form-check-input" asp-for="IsCompleted" /> @Html.DisplayNameFor(model => model.IsCompleted)
                 </label>
             </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Notify" /> @Html.DisplayNameFor(model => model.Notify)
+                </label>
+            </div>
             <div class="form-group">
                 <label asp-for="ToDoListId" class="control-label">Select list:</label>
                 <select asp-for="ToDoListId" class="form-control" asp-items="@(new SelectList(Model.ToDoLists, "Id", "Name"))">

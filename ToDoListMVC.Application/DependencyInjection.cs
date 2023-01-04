@@ -11,6 +11,7 @@ namespace ToDoListMVC.Application
         {
             services.AddTransient<IToDoListService, ToDoListService>();
             services.AddTransient<IToDoTaskService, ToDoTaskService>();
+            services.AddTransient<IMailService, MailService>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         }
